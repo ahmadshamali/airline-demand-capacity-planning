@@ -67,6 +67,8 @@ The project does not include:
 
 ## Current Project Status
 
+Phase 2 repository and tooling setup has been completed. The project is ready to proceed to methodology, data strategy, and evaluation design.
+
 ### Completed
 
 * Phase 1 business understanding
@@ -149,7 +151,7 @@ Project-specific dependencies will be added only when they are actually required
 The project is being developed incrementally alongside the IBM Data Science Professional Certificate.
 
 1. **Business Understanding** - completed
-2. **Tools, GitHub, Repository & Reproducible Environment** - in progress
+2. **Tools, GitHub, Repository & Reproducible Environment** - completed
 3. **CRISP-DM, Data Strategy & Evaluation Design** - planned next
 4. **Data acquisition and analytical development** - later phases
 5. **Forecasting, evaluation, capacity-planning analysis and communication** - later phases
