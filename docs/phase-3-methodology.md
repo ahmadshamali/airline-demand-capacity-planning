@@ -343,6 +343,16 @@ Route treatment:
 
 A route must be active or planned to operate during the forecast period; historical existence alone is not enough.
 
+### Backtesting route-eligibility rule
+
+During historical backtesting, route eligibility must be determined using only information available at the forecast cutoff. Realized operation in the forecast month must not be used to decide whether a route should have been forecast.
+
+For the initial portfolio evaluation, the main route cohort should be established using training-period history only and kept fixed through the relevant validation/test window where practical. New or cold-start routes should be evaluated separately.
+
+Future T-100 observations must not be used to determine route eligibility before a historical forecast is generated.
+
+In a real airline deployment, planned future schedules would provide legitimate information about which routes are expected to operate during the forecast period.
+
 ---
 
 ## 11. Data Preparation Plan
