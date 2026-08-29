@@ -34,11 +34,15 @@ The eventual system should help planners investigate whether capacity may need t
 
 ## Unit of Analysis
 
-The conceptual unit of analysis is:
+The working unit of analysis is:
 
-**Origin-destination route over a time period**
+**One airline + directional origin–destination route + month**
 
-Weekly analysis is currently a conceptual preference, but the final time granularity has not been fixed. It will depend on the dataset selected later.
+Routes are directional, so `RDU → MIA` and `MIA → RDU` are treated as separate route series.
+
+Monthly granularity was selected because the primary historical data source, BTS T-100 Segment, provides authoritative passenger and seat-capacity information at monthly frequency.
+
+The primary forecast horizon is one month ahead.
 
 ## Current Scope
 
@@ -67,33 +71,41 @@ The project does not include:
 
 ## Current Project Status
 
-Phase 2 repository and tooling setup has been completed. The project is ready to proceed to methodology, data strategy, and evaluation design.
+- **Primary historical data source:** BTS T-100 Segment
+- **Working unit of analysis:** directional origin–destination route per month
+- **Primary forecast horizon:** one month ahead
+- **Next phase:** Phase 4 — Python Data Acquisition & Processing Foundations
 
 ### Completed
 
-* Phase 1 business understanding
-* local Git repository setup
-* GitHub remote repository setup
-* initial repository organization
-* `.gitignore` and data-safety rules
-* Phase 1 documentation
-* tooling documentation
+- Phase 1 — Business Understanding & Problem Definition
+- Phase 2 — Tools, GitHub, Repository & Reproducible Environment
+- Phase 3 — CRISP-DM, Data Strategy & Evaluation Design
+- primary historical data-source selection
+- analytical approach and target definition
+- data-requirements specification
+- data-quality inspection plan
+- data-leakage rules
+- temporal validation strategy
+- baseline and evaluation strategy
+- capacity-signal and feedback-loop design
 
 ### Not Yet Completed
 
-* dataset selection
-* dataset acquisition
-* data cleaning
-* exploratory data analysis
-* statistical analysis
-* feature engineering
-* forecasting model development
-* model evaluation
-* capacity analysis
-* dashboards
-* deployment
+- dataset acquisition
+- specific airline selection
+- route-history inspection
+- data cleaning and preparation
+- exploratory data analysis
+- statistical analysis
+- feature engineering
+- forecasting model development
+- model evaluation
+- capacity-signal implementation
+- dashboards
+- deployment
 
-No dataset or forecasting algorithm has been selected yet.
+BTS T-100 Segment has been selected as the primary historical data source. No final forecasting algorithm has been selected yet.
 
 ## Repository Structure
 
@@ -103,6 +115,7 @@ airline-demand-capacity-planning/
 │   └── README.md
 ├── docs/
 │   ├── phase-1-business-understanding.md
+│   ├── phase-3-methodology.md
 │   └── tooling.md
 ├── notebooks/
 │   └── README.md
@@ -133,7 +146,7 @@ This helps reduce the risk of accidentally committing:
 * licensed or restricted datasets
 * generated intermediate data
 
-No project dataset has been selected or added yet.
+BTS T-100 Segment has been selected as the primary historical data source. The dataset has not yet been acquired or added to the project.
 
 ## Tools
 
@@ -152,15 +165,19 @@ The project is being developed incrementally alongside the IBM Data Science Prof
 
 1. **Business Understanding** - completed
 2. **Tools, GitHub, Repository & Reproducible Environment** - completed
-3. **CRISP-DM, Data Strategy & Evaluation Design** - planned next
-4. **Data acquisition and analytical development** - later phases
+3. **CRISP-DM, Data Strategy & Evaluation Design** - completed
+4. **Python Data Acquisition & Processing Foundations** - next
 5. **Forecasting, evaluation, capacity-planning analysis and communication** - later phases
 
-## Important Project Risk
+## Important Project Limitation
 
-Reliable seat-capacity information by route and time period may not be available in public datasets.
+BTS T-100 provides historical passenger volume and historical available-seat capacity by route and month.
 
-If suitable capacity information cannot later be obtained or reasonably derived, the capacity-planning component may require redesign.
+However, it does not provide the airline's actual planned future seat-capacity snapshot that would have been available when a historical forecast was generated.
+
+For retrospective portfolio evaluation, realized T-100 seat capacity will therefore be used only as an explicitly labeled ex-post proxy.
+
+In a real airline deployment, planned future seat capacity would come from the airline's internal scheduling or capacity-planning systems.
 
 ## Capacity-Planning Guardrail
 
@@ -170,4 +187,4 @@ Low passenger demand does not automatically mean excess capacity.
 
 The relevant comparison is:
 
-**Forecast Passenger Demand vs. Planned Seat Capacity**
+**Forecast Observed Passenger Volume vs. Planned Seat Capacity**
