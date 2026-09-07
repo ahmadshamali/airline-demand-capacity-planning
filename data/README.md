@@ -26,9 +26,38 @@ This helps prevent accidentally committing:
 
 Small, non-sensitive example files may be committed later when there is a clear reason to include them.
 
-## Current Status
+## Current Data Source
 
-No dataset has been selected or acquired yet.
+The approved primary historical data source is the U.S. Department of Transportation Bureau of Transportation Statistics (BTS) T-100 data.
 
-Dataset selection and validation are intentionally deferred to a later project phase.
+For Phase 4.1, the selected table is:
+
+- **Table:** T-100 International Segment (All Carriers)
+- **Frequency:** Monthly
+- **Unit represented by the source:** Directional nonstop segment activity
+- **Carrier scope during acquisition:** All carriers
+- **Acquisition method:** Official BTS TranStats download interface
+- **Source reference:** https://transtats.bts.gov/DL_SelectFields.aspx?QO_fu146_anzr=Nv4Pn44vr45&gnoyr_VQ=FJE
+
+The final airline has not yet been selected. Carrier investigation belongs to Phase 4.2.
+
+## Raw Data
+
+Original BTS downloads are stored under:
+
+`data/raw/`
+
+Raw source files are preserved unchanged after acquisition and are excluded from Git tracking.
+
+The initial verification extract covers January 2024 and was downloaded as a ZIP archive containing a CSV file.
+
+The January 2024 extract is used only to verify acquisition, loading, and source structure. It does not define the final historical modeling period.
+
+## Processed Data
+
+Future cleaned or transformed datasets will be stored under:
+
+`data/processed/`
+
+No processed dataset has been created during Phase 4.1.
 
