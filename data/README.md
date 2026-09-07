@@ -32,12 +32,12 @@ The approved primary historical data source is the U.S. Department of Transporta
 
 For Phase 4.1, the selected table is:
 
-- **Table:** T-100 International Segment (All Carriers)
+- **Table:** T-100 Segment (All Carriers)
 - **Frequency:** Monthly
 - **Unit represented by the source:** Directional nonstop segment activity
 - **Carrier scope during acquisition:** All carriers
 - **Acquisition method:** Official BTS TranStats download interface
-- **Source reference:** https://transtats.bts.gov/DL_SelectFields.aspx?QO_fu146_anzr=Nv4Pn44vr45&gnoyr_VQ=FJE
+- **Source reference:** https://www.transtats.bts.gov/DL_SelectFields.aspx?QO_fu146_anzr=Nv4+Pn44vr45&gnoyr_VQ=FMG
 
 The final airline has not yet been selected. Carrier investigation belongs to Phase 4.2.
 
