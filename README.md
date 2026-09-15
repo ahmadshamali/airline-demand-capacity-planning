@@ -71,41 +71,34 @@ The project does not include:
 
 ## Current Project Status
 
-- **Primary historical data source:** BTS T-100 Segment
+- **Primary historical data source:** BTS T-100 Segment (All Carriers)
+- **Historical investigation period:** January 2024 through May 2026
+- **Selected carrier:** WN — Southwest Airlines Co.
 - **Working unit of analysis:** directional origin–destination route per month
 - **Primary forecast horizon:** one month ahead
-- **Next phase:** Phase 4 — Python Data Acquisition & Processing Foundations
+- **Phase 4.1:** complete
+- **Phase 4.2:** analytical work complete; awaiting final documentation closure
+- **Next phase:** Phase 4.3
 
 ### Completed
 
 - Phase 1 — Business Understanding & Problem Definition
 - Phase 2 — Tools, GitHub, Repository & Reproducible Environment
 - Phase 3 — CRISP-DM, Data Strategy & Evaluation Design
-- primary historical data-source selection
-- analytical approach and target definition
-- data-requirements specification
-- data-quality inspection plan
-- data-leakage rules
-- temporal validation strategy
-- baseline and evaluation strategy
-- capacity-signal and feedback-loop design
+- Phase 4.1 — BTS T-100 Segment (All Carriers) acquisition and structural verification
+- Phase 4.2 analytical work — carrier investigation, WN selection, route continuity analysis, and leakage-safe route-eligibility design
 
 ### Not Yet Completed
 
-- dataset acquisition
-- specific airline selection
-- route-history inspection
-- data cleaning and preparation
-- exploratory data analysis
-- statistical analysis
+- Phase 4.2 final documentation closure
+- Phase 4.3
+- final route-month modeling dataset construction
+- final treatment of zero-passenger scheduled route-months
 - feature engineering
 - forecasting model development
 - model evaluation
-- capacity-signal implementation
-- dashboards
-- deployment
 
-BTS T-100 Segment has been selected as the primary historical data source. No final forecasting algorithm has been selected yet.
+No final modeling dataset has been built yet.
 
 ## Repository Structure
 
@@ -118,6 +111,8 @@ airline-demand-capacity-planning/
 │   ├── phase-3-methodology.md
 │   └── tooling.md
 ├── notebooks/
+│   ├── 01_data_acquisition.ipynb
+│   ├── 02_carrier_investigation.ipynb
 │   └── README.md
 ├── reports/
 │   └── README.md
