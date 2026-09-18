@@ -38,19 +38,30 @@ The table used for the project is:
 
 Phase 4.1 data acquisition and structural verification are complete.
 
-Phase 4.2 carrier investigation and route-history analysis are analytically complete and awaiting final documentation closure.
+Phase 4.2 carrier investigation and route-history analysis are complete.
 
-Phase 4.3 is next.
+Phase 4.3 route-month foundation, activity definition, reusable processing, and eligibility integration are complete pending final Master Chat approval.
 
-## Service-Class and Active-Route Scope
+## Service-Class and Activity Scope
 
-`CLASS = F` represents scheduled passenger/cargo service and is the project's scheduled passenger-service scope.
+`CLASS = F` is the project's scheduled passenger-service scope.
 
-For the Phase 4.2 active passenger-route recurrence investigation, `PASSENGERS > 0` was used to identify route-month observations with realized passenger activity.
+During Phase 4.2, `PASSENGERS > 0` was used specifically for exploratory route-recurrence analysis.
 
-This `PASSENGERS > 0` filter applies specifically to the Phase 4.2 active passenger-route recurrence investigation.
+The final operational activity definition established in Phase 4.3 is:
 
-The final treatment of zero-passenger scheduled route-months is deferred to Phase 4.3 and has not yet been decided.
+`DEPARTURES_PERFORMED > 0`
+
+This definition preserves source-observed route-months where service was performed even when reported passenger volume was zero.
+
+In the final WN route-month foundation:
+
+- **55,395** source-observed route-months are present
+- **55,376** are operationally active
+- **19** are source-observed but inactive
+- **119** have zero passengers but positive performed departures
+
+Absent route-months are not artificially inserted or zero-filled.
 
 ## Raw Data
 
@@ -62,14 +73,32 @@ Raw source files are preserved unchanged after acquisition and remain local.
 
 Raw data files are excluded from Git tracking.
 
-The T-100 Segment (All Carriers) source has been acquired and investigated for the January 2024 through May 2026 historical period.
+The T-100 Segment (All Carriers) source has been acquired for the January 2024 through May 2026 historical period.
+
+The selected analytical scope is:
+
+- carrier: `WN` — Southwest Airlines Co.
+- service scope: `CLASS = F`
+- analytical grain: directional route-month
 
 ## Processed Data
 
-Future cleaned or transformed datasets will be stored under:
+The validated processed route-month foundation is stored locally under:
 
-`data/processed/`
+`data/processed/wn_route_month.csv`
 
-No final route-month modeling dataset has been built yet.
+The processed dataset contains:
 
-Construction of the modeling dataset and the final treatment of zero-passenger scheduled route-months are deferred to Phase 4.3.
+- **55,395 rows**
+- **14 columns**
+- **4,271 directional routes**
+- **29 calendar months**
+- coverage from **2024-01 through 2026-05**
+
+`YEAR_MONTH` is serialized as `YYYY-MM`.
+
+`IS_ACTIVE` is derived from:
+
+`DEPARTURES_PERFORMED > 0`
+
+Raw and processed bulk datasets remain excluded from Git tracking.

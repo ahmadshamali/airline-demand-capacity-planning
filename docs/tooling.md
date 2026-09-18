@@ -38,41 +38,47 @@ It provides:
 
 ## Editor and Notebook Tools
 
-VS Code and Jupyter are appropriate tools for future project development.
+VS Code and Jupyter are actively used for project development.
 
-VS Code can be used for:
+VS Code is used for:
 
-- source code
-
+- Python source code
 - Markdown documentation
-
 - Git integration
+- repository navigation
 
-- general project navigation
+Jupyter is used for:
 
-Jupyter notebooks can later be used for:
-
+- data acquisition validation
 - exploratory analysis
+- raw-grain investigation
+- route-month aggregation
+- activity-rule analysis
+- reusable-pipeline validation
 
-- data inspection
+The current notebooks are:
 
-- visualization
-
-- modeling experiments
-
-No analysis notebooks have been created yet because data analysis has not started.
+- `01_data_acquisition.ipynb`
+- `02_carrier_investigation.ipynb`
+- `03_route_month_foundation.ipynb`
 
 ## Python Environment
 
-No project-specific Python environment or dependency file has been created yet.
+The project uses a local `.venv` environment on Windows.
 
-Dependencies will be added only when they are actually required in later phases.
+Current environment:
 
-This avoids adding speculative packages before the project needs them.
+- **Python 3.14.7**
+- **pandas 3.0.5**
+- **ipykernel 7.3.0**
 
-## Current Tooling Principle
+Direct project dependencies are recorded in:
 
-The project will use the simplest tools that adequately support reproducible Data Science work.
+`requirements.txt`
 
-Additional tools will only be introduced when they solve a real project requirement.
+Current contents:
 
+- `pandas==3.0.5`
+- `ipykernel==7.3.0`
+
+Only direct project dependencies are listed. Transitive dependencies are not added manually unless the project uses them directly.

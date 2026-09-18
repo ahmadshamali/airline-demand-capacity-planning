@@ -31,21 +31,20 @@ def filter_project_scope(df):
     pd.DataFrame: A filtered DataFrame containing only rows within the project scope.
     """
     required_columns = [
-
-    "UNIQUE_CARRIER",
-    "AIRLINE_ID",
-    "UNIQUE_CARRIER_NAME",
-    "CLASS",
-    "YEAR",
-    "MONTH",
-    "ORIGIN",
-    "DEST",
-    "PASSENGERS",
-    "SEATS",
-    "DEPARTURES_SCHEDULED",
-    "DEPARTURES_PERFORMED",
-    "DISTANCE",
-]
+        "UNIQUE_CARRIER",
+        "AIRLINE_ID",
+        "UNIQUE_CARRIER_NAME",
+        "CLASS",
+        "YEAR",
+        "MONTH",
+        "ORIGIN",
+        "DEST",
+        "PASSENGERS",
+        "SEATS",
+        "DEPARTURES_SCHEDULED",
+        "DEPARTURES_PERFORMED",
+        "DISTANCE",
+    ]
 
     _validate_required_columns(df, required_columns)
 
@@ -57,16 +56,19 @@ def filter_project_scope(df):
 
     if filtered_df.empty:
         raise ValueError(
-            "No rows found for project scope: UNIQUE_CARRIER='WN' and CLASS='F'."
+            "No rows found for project scope: "
+            "UNIQUE_CARRIER='WN' and CLASS='F'."
         )
 
     airline_ids = set(filtered_df["AIRLINE_ID"].unique())
+
     if airline_ids != {19393}:
         raise ValueError(
             f"Unexpected AIRLINE_ID values for WN/F scope: {airline_ids}"
         )
     
     carrier_names = set(filtered_df["UNIQUE_CARRIER_NAME"].unique())
+
     if carrier_names != {"Southwest Airlines Co."}:
         raise ValueError(
             f"Unexpected UNIQUE_CARRIER_NAME values for WN/F scope: {carrier_names}"
@@ -181,11 +183,12 @@ Returns:
 """
     min_historical_active_months = 6
     recency_window_months = 3
+
     required_columns = [
-    "YEAR_MONTH",
-    "ORIGIN",
-    "DEST",
-    "IS_ACTIVE",
+        "YEAR_MONTH",
+        "ORIGIN",
+        "DEST",
+        "IS_ACTIVE",
     ]
 
     _validate_required_columns(route_month_df, required_columns)
@@ -220,13 +223,16 @@ Returns:
 
     ## Filter the historical active dataset to include only the last 3 months before the forecast origin
     recent_start = forecast_origin - recency_window_months 
+
     recent_active = historical_active.loc[
-    historical_active["YEAR_MONTH"] >= recent_start
+        historical_active["YEAR_MONTH"] >= recent_start
     ]
 
     recent_routes = (
-    recent_active[["ORIGIN", "DEST"]]
-    .drop_duplicates()
+        recent_active[
+            ["ORIGIN", "DEST"]
+        ]
+        .drop_duplicates()
     )
     ### Merge the historical eligible routes with the recent active routes to get the final eligible routes
     eligible_routes = ( 
@@ -236,8 +242,8 @@ Returns:
             on=["ORIGIN", "DEST"],
             how="inner"
         )
-    .sort_values(by=["ORIGIN", "DEST"])
-    .reset_index(drop=True)
+        .sort_values(by=["ORIGIN", "DEST"])
+        .reset_index(drop=True)
     )
 
     return eligible_routes
@@ -295,11 +301,11 @@ Returns:
 
     ## Check for duplicates in the analytical key columns
     key_columns = [
-    "UNIQUE_CARRIER",
-    "YEAR",
-    "MONTH",
-    "ORIGIN",
-    "DEST",
+        "UNIQUE_CARRIER",
+        "YEAR",
+        "MONTH",
+        "ORIGIN",
+        "DEST",
     ]
 
     
@@ -312,7 +318,8 @@ Returns:
         f"Route-month dataset contains {duplicate_count} duplicate analytical keys."
         )
 
-    route_month_df = route_month_df[[
+    route_month_df = route_month_df[
+    [
         "UNIQUE_CARRIER",
         "AIRLINE_ID",
         "UNIQUE_CARRIER_NAME",
@@ -327,7 +334,8 @@ Returns:
         "DEPARTURES_PERFORMED",
         "DISTANCE",
         "IS_ACTIVE"
-        ]]
+    ]
+]
 
     ## Validate additive reconciliation between the input filtered dataset and the aggregated route-month dataset
     _validate_additive_reconciliation(filtered_df, route_month_df)
